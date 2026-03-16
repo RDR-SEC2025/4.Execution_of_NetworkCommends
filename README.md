@@ -26,7 +26,54 @@ This commands includes
 • Other IP Commands e.g. show ip route etc.
 <BR>
 
-## Output
+## Program:
+```
+CLIENT.py
+import socket
 
+c = socket.socket()
+c.connect(("localhost", 5000))
+
+host = input("Enter website/IP: ")
+c.send(host.encode())
+
+print(c.recv(4096).decode())
+
+c.close()
+
+SERVER.py
+
+import socket, subprocess
+
+s = socket.socket()
+s.bind(("localhost", 5000))
+s.listen(1)
+
+c, addr = s.accept()
+host = c.recv(1024).decode()
+
+result = subprocess.getoutput("ping " + host)
+c.send(result.encode())
+
+c.close()
+
+Trace.py
+
+import subprocess
+
+target = input("Enter website or IP: ")
+
+subprocess.run(["tracert", target])
+```
+## Output
+![alt text](008.png)
+![alt text](009.png)
+![alt text](010.png)
+![alt text](011.png)
+![alt text](012.png)
+![alt text](013.png)
+![alt text](014.png)
+![alt text](015.png)
+![alt text](016.png)
 ## Result
 Thus Execution of Network commands Performed 
