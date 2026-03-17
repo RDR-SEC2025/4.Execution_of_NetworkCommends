@@ -40,7 +40,8 @@ c.send(host.encode())
 print(c.recv(4096).decode())
 
 c.close()
-
+```
+```
 SERVER.py
 
 import socket, subprocess
@@ -56,7 +57,8 @@ result = subprocess.getoutput("ping " + host)
 c.send(result.encode())
 
 c.close()
-
+```
+```
 Trace.py
 
 import subprocess
